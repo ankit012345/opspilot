@@ -13,3 +13,4 @@ else
     echo "ERROR: Application health check failed."
     exit 1
 fi
+# Git practice: tracking my first change
