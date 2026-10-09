@@ -22,14 +22,29 @@ const deployments = [
 ];
 
 app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", app: "OpsPilot API", timestamp: new Date().toISOString() });
+  res.json({
+    status: "ok",
+    app: "OpsPilot API",
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get("/api/version", (_req, res) => {
+  res.json({
+    application: "OpsPilot",
+    version: "1.0.0"
+  });
 });
 
 app.get("/api/services", (_req, res) => res.json(services));
+
 app.get("/api/deployments", (_req, res) => res.json(deployments));
 
 app.get("*", (req, res, next) => {
-  if (req.path.startsWith("/api/")) return res.status(404).json({ error: "API route not found" });
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).json({ error: "API route not found" });
+  }
+
   res.sendFile(path.join(__dirname, "public", "index.html"), (err) => {
     if (err) next(err);
   });
