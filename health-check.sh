@@ -14,3 +14,4 @@ else
     exit 1
 fi
 # Git practice: tracking my first change
+echo "Health check completed at $(date)"
